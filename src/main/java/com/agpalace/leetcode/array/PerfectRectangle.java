@@ -33,7 +33,7 @@ public class PerfectRectangle {
 
     private void init(int[][] rectangles) {
         initSquare(rectangles);
-        region = new boolean[rightTop[2] - leftBtm[0]][rightTop[3] - leftBtm[1]];
+        region = new boolean[rightTop[3] - leftBtm[1]][rightTop[2] - leftBtm[0]];
     }
 
     private void initSquare(int[][] rectangles) {
@@ -68,10 +68,10 @@ public class PerfectRectangle {
     private boolean cover(int[] relatedIndex) {
         for (int i = relatedIndex[0]; i < relatedIndex[2]; i++) {
             for (int j = relatedIndex[1]; j < relatedIndex[3]; j++) {
-                if (region[i][j]) {
+                if (region[j][i]) {
                     return false;
                 } else {
-                    region[i][j] = true;
+                    region[j][i] = true;
                 }
             }
         }

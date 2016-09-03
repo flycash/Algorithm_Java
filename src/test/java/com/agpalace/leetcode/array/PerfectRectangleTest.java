@@ -3,6 +3,11 @@ package com.agpalace.leetcode.array;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 /**
  * Created by dengming on 16/9/1.
  */
@@ -71,8 +76,53 @@ public class PerfectRectangleTest {
                 {4,1,5,2},
                 {5,0,6,1}
         };
-        Assert.assertTrue(!rectangle.isRectangleCover(array));
+        Assert.assertTrue(rectangle.isRectangleCover(array));
     }
 
+    @Test
+    public void test6() throws IOException {
 
+        String file="src/test/resources/leetcode/PerfectRectangle.input.txt";
+        StringBuilder builder=readInput(file);
+        String[] input=getArray(builder);
+        int[][] array=new int[input.length][4];
+        for (int i=0; i<input.length; i++){
+            array[i]=toArray(input[i]);
+        }
+        Assert.assertTrue(rectangle.isRectangleCover(array));
+    }
+
+    private int[] toArray(String array){
+        String[] nums=array.split(",");
+        int[] res=new int[nums.length];
+        for (int i=0; i<nums.length; i++){
+            res[i]=Integer.valueOf(nums[i]);
+        }
+        return res;
+    }
+
+    private StringBuilder readInput(String file) throws IOException {
+        FileReader reader=new FileReader(new File(file));
+        BufferedReader bufferedReader=new BufferedReader(reader);
+        StringBuilder builder=new StringBuilder();
+        while (true){
+            String line=bufferedReader.readLine();
+            if (line==null){
+                break;
+            } else {
+                builder.append(line);
+            }
+        }
+        return builder;
+    }
+
+    private String[] getArray(StringBuilder builder){
+        builder.deleteCharAt(0);
+        builder.deleteCharAt(builder.length()-1);
+        String reg="],\\[";
+        String[] input=builder.toString().split(reg);
+        input[0]=input[0].substring(1);
+        input[input.length-1]=input[input.length-1].substring(0,input[input.length-1].length()-1);
+        return input;
+    }
 }
