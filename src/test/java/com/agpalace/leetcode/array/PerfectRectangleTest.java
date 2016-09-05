@@ -1,11 +1,9 @@
 package com.agpalace.leetcode.array;
 
+import com.agpalace.util.FileUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 
 /**
@@ -83,7 +81,7 @@ public class PerfectRectangleTest {
     public void test6() throws IOException {
 
         String file="src/test/resources/leetcode/PerfectRectangle.input.txt";
-        StringBuilder builder=readInput(file);
+        StringBuilder builder= FileUtil.read(file);
         String[] input=getArray(builder);
         int[][] array=new int[input.length][4];
         for (int i=0; i<input.length; i++){
@@ -101,20 +99,6 @@ public class PerfectRectangleTest {
         return res;
     }
 
-    private StringBuilder readInput(String file) throws IOException {
-        FileReader reader=new FileReader(new File(file));
-        BufferedReader bufferedReader=new BufferedReader(reader);
-        StringBuilder builder=new StringBuilder();
-        while (true){
-            String line=bufferedReader.readLine();
-            if (line==null){
-                break;
-            } else {
-                builder.append(line);
-            }
-        }
-        return builder;
-    }
 
     private String[] getArray(StringBuilder builder){
         builder.deleteCharAt(0);

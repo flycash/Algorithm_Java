@@ -1,5 +1,6 @@
 package com.agpalace.leetcode.string;
 
+import com.agpalace.util.FileUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -83,6 +84,14 @@ public class LongestAbsoluteFilePathTest {
                 "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tlkjasflgjlskjglkfjgklgsdjflkbjsdklfjskldfjgklsfdjgklfdjgl" +
                 "\n\tlskadjlkjsldwwwwwfj" +
                 "\n\t\tlkjflkasjlfjlkjajslfkjlasjkdlfjlaskjalvwwwwwwwwwwwwwwwkjlsjfglkjalsjgflkjaljlkdsjslbjsljksldjlsjdlkjljvblkjlkajfljgasljfkajgfljfjgldjblkjsdljgsldjg.skljf");
+    }
+
+    @Test
+    public void test9(){
+        StringBuilder builder= FileUtil.read("src/test/resources/leetcode/LongestAbsoluteFilePath.input.txt");
+        String s=builder.toString().replace("\\n", "\n").replace("\\t","\t");
+        System.out.println(s);
+        t(473, s);
     }
 
     private void t(int target, String input){

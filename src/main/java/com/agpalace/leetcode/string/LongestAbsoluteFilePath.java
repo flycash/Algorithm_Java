@@ -32,12 +32,11 @@ public class LongestAbsoluteFilePath {
     }
 
     private void handleDir() {
-
+        if (tNum+1!=lastTNum){
+            clear(tNum+1);
+        }
         Integer downLevel = longest.get(tNum + 1);
         Integer old = longest.get(tNum);
-        if (tNum+1!=lastTNum){
-            downLevel=0;
-        }
         if (downLevel == null || downLevel == 0) {
             int tmp = old == null ? 0 : old;
             longest.put(tNum, tmp);
@@ -55,6 +54,14 @@ public class LongestAbsoluteFilePath {
         lastTNum = tNum;
         if (tNum == 0) {
             clear();
+        }
+    }
+
+    private void clear(int i) {
+        for (Integer key:longest.keySet()){
+            if (key>=i){
+                longest.put(key, 0);
+            }
         }
     }
 
